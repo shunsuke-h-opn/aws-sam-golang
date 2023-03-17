@@ -85,7 +85,7 @@ make
 **Invoking function locally through local API Gateway**
 
 ```bash
-sam local start-api
+sam local start-api -n env.json
 ```
 
 If the previous command ran successfully you should now be able to hit the following local endpoint to invoke your function `http://localhost:3000/hello`
