@@ -11,27 +11,76 @@ Globals:
     Timeout: 5
     MemorySize: 128
     Tracing: Active
+    Environment:
+        Variables:
+          DATABASE_USER:
+          DATABASE_PASSWORD:
+          DATABASE_HOST:
+          DATABASE_NAME:
+          DATABASE_PORT:
+          AUTHENTICATION_TOKEN:
   Api:
     TracingEnabled: true
 
+Description: 
+  An example RESTful service
 Resources:
-  HelloWorldFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+  Hello:
+    Type: AWS::Serverless::Function
     Properties:
-      CodeUri: hello-world/
-      Handler: hello-world
+      Handler: main
+      CodeUri: ./bin/hello/hello.zip
       Runtime: go1.x
-      Architectures:
-      - x86_64
+      Timeout: 30
+      
       Events:
-        CatchAll:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+        GetRates:
+          Type: Api
           Properties:
             Path: /hello
-            Method: GET
-      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
-        Variables:
-          PARAM1: VALUE
+            Method: get
+  EventsCreate:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main
+      CodeUri: ./bin/events/create.zip
+      Runtime: go1.x
+      Timeout: 30
+      
+      Events:
+        GetRates:
+          Type: Api
+          Properties:
+            Path: /events
+            Method: post
+  SubscriptionsCreate:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main
+      CodeUri: ./bin/subscriptions/create.zip
+      Runtime: go1.x
+      Timeout: 30
+      
+      Events:
+        GetRates:
+          Type: Api
+          Properties:
+            Path: /subscriptions
+            Method: post
+  SubscriptionsDelete:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main
+      CodeUri: ./bin/subscriptions/delete.zip
+      Runtime: go1.x
+      Timeout: 30
+      
+      Events:
+        GetRates:
+          Type: Api
+          Properties:
+            Path: /subscriptions/{id}
+            Method: delete
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group

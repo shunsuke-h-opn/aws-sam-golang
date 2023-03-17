@@ -4,11 +4,59 @@ This is a sample template for aws-sam-golang - Below is a brief explanation of w
 
 ```bash
 .
-├── Makefile                    <-- Make to automate build
-├── README.md                   <-- This instructions file
-├── hello-world                 <-- Source code for a lambda function
-│   ├── main.go                 <-- Lambda function code
-│   └── main_test.go            <-- Unit tests
+├── Makefile
+├── README.md
+├── bin
+│   ├── events
+│   │   ├── create
+│   │   └── create.zip
+│   ├── hello
+│   │   ├── hello
+│   │   └── hello.zip
+│   └── subscriptions
+│       ├── create
+│       ├── create.zip
+│       ├── delete
+│       └── delete.zip
+├── endpoints
+│   ├── events
+│   │   ├── create
+│   │   │   └── main.go
+│   │   └── delete
+│   ├── hello
+│   │   └── main.go
+│   ├── migrate
+│   ├── seeder
+│   └── subscriptions
+│       ├── create
+│       │   └── main.go
+│       └── delete
+│           └── main.go
+├── env.json
+├── env.sample.json
+├── eventbus
+│   ├── database.go
+│   ├── deliveries.go
+│   ├── event.go
+│   ├── routes.go
+│   └── subscription.go
+├── events
+│   └── event.json
+├── go.mod
+├── go.sum
+├── hello-world
+│   ├── main.go
+│   └── main_test.go
+├── migrate
+│   ├── 000001_create_events.down.sql
+│   ├── 000001_create_events.up.sql
+│   ├── 000002_create_subscriptions.down.sql
+│   ├── 000002_create_subscriptions.up.sql
+│   ├── 000003_add_deleted_at_to_tablesn.down.sql
+│   └── 000003_add_deleted_at_to_tablesn.up.sql
+├── samconfig.toml
+├── seeder
+├── serverless.yaml
 └── template.yaml
 ```
 
