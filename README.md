@@ -80,6 +80,12 @@ The `sam build` command is wrapped inside of the `Makefile`. To execute this sim
 make
 ```
 
+### seeder and migrater
+
+### refer
+
+https://medium.com/@aleccarper/build-and-deploy-a-multi-route-serverless-web-app-with-golang-on-aws-a76f7575751b
+
 ### Local development
 
 **Invoking function locally through local API Gateway**
